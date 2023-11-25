@@ -608,20 +608,22 @@ soft_reset:
         goto soft_reset_exit;
     }
 
-    #if MICROPY_ENABLE_COMPILER
-    // Main script is finished, so now go into REPL mode.
-    // The REPL mode can change, or it can request a soft reset.
-    for (;;) {
-        if (pyexec_mode_kind == PYEXEC_MODE_RAW_REPL) {
-            if (pyexec_raw_repl() != 0) {
-                break;
-            }
-        } else {
-            if (pyexec_friendly_repl() != 0) {
-                break;
+    #if MICROPY_ENABLE_REPL
+        #if MICROPY_ENABLE_COMPILER
+        // Main script is finished, so now go into REPL mode.
+        // The REPL mode can change, or it can request a soft reset.
+        for (;;) {
+            if (pyexec_mode_kind == PYEXEC_MODE_RAW_REPL) {
+                if (pyexec_raw_repl() != 0) {
+                    break;
+                }
+            } else {
+                if (pyexec_friendly_repl() != 0) {
+                    break;
+                }
             }
         }
-    }
+        #endif
     #endif
 
 soft_reset_exit:

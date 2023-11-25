@@ -5,13 +5,14 @@
 #define MICROPY_HW_HAS_FLASH        (1)
 #define MICROPY_HW_ENABLE_RTC       (1)
 #define MICROPY_HW_ENABLE_USB       (1)
-#define MICROPY_HW_ENABLE_SERVO     (1)
+#define MICROPY_HW_ENABLE_SERVO     (0)
+#define MICROPY_ENABLE_REPL         (0)
 
 // HSE is 8MHz
-#define MICROPY_HW_CLK_PLLM (5)
-#define MICROPY_HW_CLK_PLLN (210)
-#define MICROPY_HW_CLK_PLLP (RCC_PLLP_DIV4)
-#define MICROPY_HW_CLK_PLLQ (7)
+#define MICROPY_HW_CLK_PLLM (25)
+#define MICROPY_HW_CLK_PLLN (192)
+#define MICROPY_HW_CLK_PLLP (RCC_PLLP_DIV2)
+#define MICROPY_HW_CLK_PLLQ (4)
 
 // does not have a 32kHz crystal
 #define MICROPY_HW_RTC_USE_LSE      (0)
@@ -51,14 +52,10 @@
 #define MICROPY_HW_USRSW_PRESSED    (1)
 
 // LEDs
-#define MICROPY_HW_LED1             (pin_D14) // red
-#define MICROPY_HW_LED2             (pin_D12) // green
-#define MICROPY_HW_LED3             (pin_D13) // orange
-#define MICROPY_HW_LED4             (pin_D15) // blue
+#define MICROPY_HW_LED1             (pin_C13) // red
 #define MICROPY_HW_LED_ON(pin)      (mp_hal_pin_high(pin))
 #define MICROPY_HW_LED_OFF(pin)     (mp_hal_pin_low(pin))
 
 // USB config
 #define MICROPY_HW_USB_FS              (1)
-#define MICROPY_HW_USB_VBUS_DETECT_PIN (pin_A9)
-#define MICROPY_HW_USB_OTG_ID_PIN      (pin_A10)
+#define MICROPY_HW_FLASH_FS_LABEL      "STM32F411"
